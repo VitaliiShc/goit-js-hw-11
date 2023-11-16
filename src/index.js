@@ -47,7 +47,6 @@ function onSearhBtnClick(e) {
         );
       } else {
         Notify.info(`Hooray! We found ${data.totalHits} images.`, notifyParams);
-        // console.log(queryResult);
         createMarkup(queryResult);
         lightbox.refresh();
       }
@@ -91,15 +90,6 @@ function onFetchError() {
     notifyParams
   );
 }
-
-// function scrollPage() {
-//     const { height: cardHeight } = gallery.firstElementChild.getBoundingClientRect();
-
-//     window.scrollBy({
-//         top: cardHeight * 2,
-//         behavior: "smooth",
-//     });
-// };
 
 function loadMoreImgs() {
   if (checkIfEndOfPage()) {
