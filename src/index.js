@@ -46,13 +46,19 @@ function onSearhBtnClick(e) {
           notifyParams
         );
       } else {
-        Notify.info(`Hooray! We found ${data.totalHits} images.`, notifyParams);
+        Notify.success(`Hooray! We found ${data.totalHits} images.`, notifyParams);
         createMarkup(queryResult);
         lightbox.refresh();
       }
       if (data.totalHits > per_page) {
         loadMoreBtn.classList.remove('is-hidden');
         window.addEventListener('scroll', loadMoreImgs);
+      }
+      if (data.totalHits <= per_page && data.totalHits !== 0) {
+        Notify.info(
+          `We're sorry, but you've reached the end of search results`,
+          notifyParams
+        );
       }
     })
     .catch(onFetchError);
@@ -72,7 +78,7 @@ function onClickLoadMore() {
       createMarkup(queryResult);
       if (page === numberOfPage) {
         loadMoreBtn.classList.add('is-hidden');
-        Notify.info(
+        Notify.success(
           "We're sorry, but you've reached the end of search results.",
           notifyParams
         );
